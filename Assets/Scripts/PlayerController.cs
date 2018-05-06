@@ -11,12 +11,16 @@ public class PlayerController : MonoBehaviour {
 
 	Rigidbody2D rb2d;
 
+	SpriteRenderer rend;
+
 
 	void Start () {
 
 		rb2d = this.GetComponent<Rigidbody2D> ();
 		moveAnimator = this.GetComponent<Animator> ();
 		destinationPosition = this.transform.position;
+		rend = this.GetComponent<SpriteRenderer> ();
+
 	}
 
 	void Update () {
@@ -58,7 +62,7 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-	void MovePlayer() {
+	void MovePlayer() { //Player moves
 
 		Vector3 directionVector = destinationPosition - this.transform.position;
 		Vector2 velocity = moveSpeed * new Vector2 (directionVector.x, directionVector.y);
@@ -66,5 +70,15 @@ public class PlayerController : MonoBehaviour {
 		rb2d.MovePosition (velocity * Time.fixedDeltaTime + rb2d.position);
 
 		moveAnimator.SetBool ("isWalking", true);
+
+		if (transform.position.x > destinationPosition.x) { //Flipping Sprite
+
+			rend.flipX = true;
+
+		} else {
+			
+			rend.flipX = false;
+		}
+
 	}
 }
