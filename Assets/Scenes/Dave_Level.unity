@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.4964127, b: 0.57481724, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641252, b: 0.574817, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1772,6 +1772,7 @@ MonoBehaviour:
   - {fileID: 101054993}
   - {fileID: 926357135}
   - {fileID: 1675990697}
+  dialogueCanvas: {fileID: 0}
 --- !u!50 &312578976
 Rigidbody2D:
   serializedVersion: 4
@@ -2823,29 +2824,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1bc4c8a9b54ad824ea15f1fb05a44fc9, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &453382753 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1164458484479450, guid: 16441999e1b58ec4a9712ab6dae3bdec,
-    type: 2}
-  m_PrefabInternal: {fileID: 1632187563}
---- !u!95 &453382754
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 453382753}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 93659da2df7918247befc784e09c0d5a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &469349492
 Prefab:
   m_ObjectHideFlags: 0
@@ -8609,6 +8587,7 @@ MonoBehaviour:
   waypoints:
   - {fileID: 721061777}
   - {fileID: 1631841107}
+  dialogueCanvas: {fileID: 0}
 --- !u!1001 &1374820488
 Prefab:
   m_ObjectHideFlags: 0
@@ -9448,6 +9427,7 @@ MonoBehaviour:
   - {fileID: 1094363283}
   - {fileID: 1436659759}
   - {fileID: 1411839302}
+  dialogueCanvas: {fileID: 0}
 --- !u!1001 &1493371425
 Prefab:
   m_ObjectHideFlags: 0
@@ -10036,18 +10016,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 1164458484479450, guid: 16441999e1b58ec4a9712ab6dae3bdec, type: 2}
-      propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 4229060213874094, guid: 16441999e1b58ec4a9712ab6dae3bdec, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 4229060213874094, guid: 16441999e1b58ec4a9712ab6dae3bdec, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 0.15
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 16441999e1b58ec4a9712ab6dae3bdec, type: 2}
   m_IsPrefabParent: 0
@@ -10262,6 +10230,7 @@ MonoBehaviour:
   waypoints:
   - {fileID: 1916011100}
   - {fileID: 2132076586}
+  dialogueCanvas: {fileID: 0}
 --- !u!1001 &1664866755
 Prefab:
   m_ObjectHideFlags: 0

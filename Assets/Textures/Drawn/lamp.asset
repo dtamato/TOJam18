@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1566551335, guid: ab85ac808950aa04ea8320fc273cd8c0, type: 3}
-  m_Name: Animation_2018-5-6_13-4-32
+  m_Name: lamp
   m_EditorClassIdentifier: 
   frames:
   - _texture: {fileID: 28003644570636944}
@@ -81,7 +81,7 @@ Sprite:
   m_AtlasName: 
   m_PackingTag: 
   m_RenderDataKey:
-    00000000000000000000000000000000: 0
+    9fd4e3c7b153cbe448227dc8d7bf64f4: 213537436910045602
   m_AtlasTags: []
   m_SpriteAtlas: {fileID: 0}
   m_RD:
