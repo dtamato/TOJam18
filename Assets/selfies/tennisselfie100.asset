@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1566551335, guid: ab85ac808950aa04ea8320fc273cd8c0, type: 3}
-  m_Name: Animation_2018-5-6_15-56-28
+  m_Name: tennisselfie100
   m_EditorClassIdentifier: 
   frames:
   - _texture: {fileID: 28634943810726126}
@@ -81,7 +81,7 @@ Sprite:
   m_AtlasName: 
   m_PackingTag: 
   m_RenderDataKey:
-    00000000000000000000000000000000: 0
+    43b8cb473d10daf42bcf013f266c6298: 213684432387166330
   m_AtlasTags: []
   m_SpriteAtlas: {fileID: 0}
   m_RD:
@@ -153,7 +153,7 @@ Sprite:
         format: 0
         dimension: 0
       m_DataSize: 80
-      _typelessdata: 8fc2f5bf0ad72340000000008fc2f53f0ad72340000000008fc2f5bf0ad723c0000000008fc2f53f0ad723c0000000000000000000000000000000000000000000000000000000000000000000000000
+      _typelessdata: 8fc2f5bf0ad72340000000008fc2f53f0ad72340000000008fc2f5bf0ad723c0000000008fc2f53f0ad723c000000000000000000000803f0000803f0000803f00000000000000000000803f00000000
     m_Bindpose: []
     m_SourceSkin: []
     textureRect:
