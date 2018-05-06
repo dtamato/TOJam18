@@ -18,6 +18,6 @@ public class InteractibleController : MonoBehaviour {
 	}
 
 	void OnMouseDown (){
-		popupCanvas.gameObject.SetActive (!popupCanvas.gameObject.enabled);
-		
+		popupCanvas.gameObject.SetActive (!popupCanvas.gameObject.activeSelf);
+	}
 }
