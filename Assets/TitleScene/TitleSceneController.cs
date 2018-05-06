@@ -11,6 +11,8 @@ public class TitleSceneController : MonoBehaviour {
 	[SerializeField] float fadeInSpeed;
 	[SerializeField] GameObject[] pawArray;
 	[SerializeField] GameObject registerButton;
+	[SerializeField] GameObject creditsButton;
+	[SerializeField] GameObject creditsPanel;
 
 	bool canShowTitle = false;
 
@@ -38,6 +40,7 @@ public class TitleSceneController : MonoBehaviour {
 		}
 		else {
 
+			creditsButton.SetActive (true);
 			registerButton.SetActive (true);
 		}
 	}
@@ -75,5 +78,10 @@ public class TitleSceneController : MonoBehaviour {
 		yield return new WaitForSeconds (registerButton.GetComponent<AudioSource> ().clip.length);
 		SceneManager.LoadScene (SceneManager.GetActiveScene().buildIndex + 1);
 		yield return null;
+	}
+
+	public void OpenCreditsPanel () {
+
+		creditsPanel.SetActive (true);
 	}
 }
