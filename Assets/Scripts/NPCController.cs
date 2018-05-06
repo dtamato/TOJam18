@@ -14,9 +14,10 @@ public class NPCController : MonoBehaviour {
     [SerializeField] GameObject[] waypoints;
     int waypointIndex = 0;
     bool resting = false;
+	bool talking = false;
 
     [Header("Dialogue")]
-   // [SerializeField] Canvas dialogueCanvas;
+    [SerializeField] Canvas dialogueCanvas;
    // [SerializeField] GameObject NPCEmote;
    // [SerializeField] string[] fartReactionArray;
    // [SerializeField] string[] playerCalloutArray;
@@ -36,6 +37,9 @@ public class NPCController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		if (talking) {resting = true;}
+
+
         if(!resting)
         {
             // Check how far the NPC is to their destination waypoint
@@ -47,7 +51,8 @@ public class NPCController : MonoBehaviour {
                 (waypoints[waypointIndex].transform.position.x < this.transform.position.x && this.transform.localScale.x < 0))
            {
               this.transform.localScale = new Vector3(-this.transform.localScale.x, this.transform.localScale.y, this.transform.localScale.z);
-          //     dialogueCanvas.GetComponentInChildren<Text>().transform.localScale = new Vector3(-dialogueCanvas.GetComponentInChildren<Text>().transform.localScale.x, dialogueCanvas.GetComponentInChildren<Text>().transform.localScale.y, dialogueCanvas.GetComponentInChildren<Text>().transform.localScale.z);
+
+				dialogueCanvas.GetComponentInChildren<RectTransform>().transform.localScale = new Vector3(-dialogueCanvas.GetComponentInChildren<RectTransform>().transform.localScale.x, dialogueCanvas.GetComponentInChildren<RectTransform>().transform.localScale.y, dialogueCanvas.GetComponentInChildren<RectTransform>().transform.localScale.z);
            }
         
             if(distance > distanceRequired)
@@ -57,6 +62,7 @@ public class NPCController : MonoBehaviour {
 
             else if(distance < distanceRequired)
             {
+				
                 StartCoroutine(WaitAtWaypoint());
             }
         }
@@ -74,17 +80,38 @@ public class NPCController : MonoBehaviour {
    //    NPCEmote.GetComponent<Animator>().SetBool("IsAngry", false);
    //}
 
-    IEnumerator WaitAtWaypoint ()
+	IEnumerator WaitAtWaypoint ()
     {
         resting = true;
-
-        yield return new WaitForSeconds(Random.Range(restTimeMin, restTimeMax));
+	
+		yield return new WaitForSeconds (Random.Range (restTimeMin, restTimeMax));				
 
         resting = false;
 
         waypointIndex++;
         if (waypointIndex >= waypoints.Length) { waypointIndex = 0; }
+
     }
+		
+	void OnMouseDown()
+	{	
+		talking = !talking;
+
+		if (talking) {
+			dialogueCanvas.gameObject.SetActive (true);
+		}
+
+		if (!talking) {	
+			dialogueCanvas.gameObject.SetActive (false);
+			resting = false;
+		}
+
+
+
+		//set the plaer waypoint to this doggo
+	}
+
+
 
   //  public void SmellFart ()
   //  {
