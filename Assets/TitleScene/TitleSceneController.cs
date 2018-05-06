@@ -64,8 +64,16 @@ public class TitleSceneController : MonoBehaviour {
 		}
 	}
 
-	public void LoadNextScene () {
+	public void RegisterButton () {
 
+		registerButton.GetComponent<AudioSource> ().Play ();
+		StartCoroutine (LoadNextScene ());
+	}
+
+	IEnumerator LoadNextScene () {
+
+		yield return new WaitForSeconds (registerButton.GetComponent<AudioSource> ().clip.length);
 		SceneManager.LoadScene (SceneManager.GetActiveScene().buildIndex + 1);
+		yield return null;
 	}
 }
