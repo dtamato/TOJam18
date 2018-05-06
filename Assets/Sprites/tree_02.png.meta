@@ -1,7 +1,9 @@
 fileFormatVersion: 2
 guid: b216288fcf6c2cc45a7fbd6d6391aff3
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: tree_02_0
+    21300002: tree_02_1
   externalObjects: {}
   serializedVersion: 5
   mipmaps:
@@ -38,9 +40,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -124,11 +126,51 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: tree_02_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 750
+        height: 808
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 331a6f24daf77404c959c596f4a75a02
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tree_02_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 750
+        height: 194
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e10e833f5bf361b47b0fe661f248dee1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: b974af847ad43934e9180d77fa432681
     vertices: []
     indices: 
     edges: []
