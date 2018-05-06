@@ -58,12 +58,14 @@ public class NPCController : MonoBehaviour {
             if(distance > distanceRequired)
             {
                 rb2d.MovePosition(rb2d.position + moveSpeed * moveVector.normalized * Time.deltaTime);
+				this.GetComponent<Animator> ().SetBool ("isWalking", true);
             }
 
             else if(distance < distanceRequired)
             {
 				
                 StartCoroutine(WaitAtWaypoint());
+				this.GetComponent<Animator> ().SetBool ("isWalking", false);
             }
         }
 	}
