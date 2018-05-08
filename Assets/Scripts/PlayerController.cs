@@ -46,6 +46,18 @@ public class PlayerController : MonoBehaviour {
 				destinationPosition = new Vector3 (destinationPosition.x, destinationPosition.y, 0);
 			}
 		}
+
+		//BORK
+		//Main communication between dogs.
+		//The player can still interact with items, but you need bork to other dogs
+		// Your borks need to match, whether it's a smol bork or a big bork.
+		// For now I just have this, but I hope to have the borks charge, and it mandatory to talk to dogs.
+
+		if (Input.GetKeyDown (KeyCode.Space)) {
+
+			Debug.Log ("BORK");
+
+		}
 	}
 
 	void FixedUpdate () {

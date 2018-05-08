@@ -15,6 +15,7 @@ public class NPCController : MonoBehaviour {
     int waypointIndex = 0;
     bool resting = false;
 	bool talking = false;
+	bool interact = false;
 
     [Header("Dialogue")]
     [SerializeField] Canvas dialogueCanvas;
@@ -23,12 +24,16 @@ public class NPCController : MonoBehaviour {
    // [SerializeField] string[] playerCalloutArray;
 
     Rigidbody2D rb2d;
+	SpriteRenderer rend;
+
 
 	// Use this for initialization
 	void Start () {
 
         rb2d = this.transform.GetComponentInChildren<Rigidbody2D>();
         //dialogueCanvas.gameObject.SetActive(false);
+
+		rend = this.GetComponent<SpriteRenderer> ();
 
         if (waypoints.Length == 0) { resting = true; }
         else { this.transform.position = waypoints[waypointIndex].transform.position; }
@@ -67,6 +72,7 @@ public class NPCController : MonoBehaviour {
                 StartCoroutine(WaitAtWaypoint());
 				this.GetComponent<Animator> ().SetBool ("isWalking", false);
             }
+				
         }
 	}
 
@@ -100,7 +106,10 @@ public class NPCController : MonoBehaviour {
 		talking = !talking;
 
 		if (talking) {
-			dialogueCanvas.gameObject.SetActive (true);
+			if (interact) {
+				dialogueCanvas.gameObject.SetActive (true);
+			}
+
 		}
 
 		if (!talking) {	
@@ -113,7 +122,34 @@ public class NPCController : MonoBehaviour {
 		//set the plaer waypoint to this doggo
 	}
 
+	void OnTriggerEnter2D(Collider2D other)
+	{
 
+		if (other.tag == "Player") 
+		{
+			interact = true;
+			rend.material.color = Color.cyan;
+
+			//Debug.Log ("Collision Detected: " + other.gameObject.name);
+
+		}
+			
+	}
+
+	void OnTriggerExit2D(Collider2D other)
+	{
+
+		if (other.tag == "Player") { //Player leaves, dog goes back to normal, dialogue disappears
+
+			interact = false;
+			rend.material.color = Color.white;
+			dialogueCanvas.gameObject.SetActive (false);
+			resting = false;
+
+		}
+
+	}
+		
 
   //  public void SmellFart ()
   //  {
