@@ -13,6 +13,15 @@ public class PlayerController : MonoBehaviour {
 
 	SpriteRenderer rend;
 
+	ParticleSystem borkPFX;
+
+	public float numBork = 0.0f;
+	float numBorkMax = 3.0f;
+	bool borkCharge = true;
+
+	float borkTimer = 0;
+	float timeToBork = 0.5f;
+	bool isChargeBork = false;
 
 	void Start () {
 
@@ -20,6 +29,7 @@ public class PlayerController : MonoBehaviour {
 		moveAnimator = this.GetComponent<Animator> ();
 		destinationPosition = this.transform.position;
 		rend = this.GetComponent<SpriteRenderer> ();
+		borkPFX = this.GetComponentInChildren<ParticleSystem> ();
 
 	}
 
@@ -53,12 +63,28 @@ public class PlayerController : MonoBehaviour {
 		// Your borks need to match, whether it's a smol bork or a big bork.
 		// For now I just have this, but I hope to have the borks charge, and it mandatory to talk to dogs.
 
-		if (Input.GetKeyDown (KeyCode.Space)) {
+		if (Input.GetKey (KeyCode.Space)) { //Charging a Bork if space is held down for a period of time
 
+			borkTimer += Time.deltaTime; 
+
+			if (borkTimer > timeToBork) { //If the player holds the button for 1 second or so
+
+				isChargeBork = true;
+				ChargeBork ();
+
+			}
+
+		}
+
+		if (Input.GetKeyUp (KeyCode.Space)) { //When the player lets go of Space
+
+			Bork ();
 			Debug.Log ("BORK");
 
 		}
+
 	}
+
 
 	void FixedUpdate () {
 
@@ -91,6 +117,69 @@ public class PlayerController : MonoBehaviour {
 			
 			rend.flipX = false;
 		}
+
+	}
+
+	void ChargeBork() { //Player is charging a bork
+		// The player has to charge their bork to use it. This requires the player to not only hold space
+		// But to also time their bork for maximum borkness. Otherwise a quick tap will let out a smol Bork.
+
+		//The charge UI needs to enable here, and run off the numBork float.
+
+		//Play a growl sound here that loops
+
+		if (borkCharge) {
+
+			numBork += Time.deltaTime;
+			if (numBork > numBorkMax) {
+
+				borkCharge = false; //Charge downwards here
+
+			}
+
+		} else if (!borkCharge) {
+
+			numBork -= Time.deltaTime;
+			if (numBork < 0) {
+
+				borkCharge = true; //Charge upwards here
+
+			}
+
+		}
+
+		Debug.Log (numBork);
+
+	}
+
+	void Bork() { //Player borks
+
+		if (isChargeBork) {
+
+			borkPFX.Play ();
+			var borkSize = borkPFX.sizeOverLifetime;
+			borkSize.sizeMultiplier = numBork;
+
+			Color blue = new Color (0f, 1f, 1f, 1f);
+			Color orange = new Color (1f, 0.7f, 0f, 1f);
+
+			var pfxMain = borkPFX.main;
+			pfxMain.startColor = Color.Lerp(blue, orange, numBork);
+
+			isChargeBork = false;
+
+		} else if (!isChargeBork) {
+
+			borkPFX.Play ();
+			var pfxMain = borkPFX.main;
+			pfxMain.startColor = Color.white;
+
+		}
+			
+		borkCharge = false;
+		numBork = 0.0f;
+
+		borkTimer = 0;
 
 	}
 }
