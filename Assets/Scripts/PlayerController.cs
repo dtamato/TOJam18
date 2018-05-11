@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [DisallowMultipleComponent]
 public class PlayerController : MonoBehaviour {
@@ -9,19 +10,26 @@ public class PlayerController : MonoBehaviour {
 	Vector3 destinationPosition;
 	Animator moveAnimator;
 
+	[SerializeField] Canvas playerCanvas;
+	[SerializeField] GameObject borkBar;
+	[SerializeField] Image borkBarFill; 
+
 	Rigidbody2D rb2d;
 
 	SpriteRenderer rend;
 
 	ParticleSystem borkPFX;
 
-	public float numBork = 0.0f;
-	float numBorkMax = 3.0f;
-	bool borkCharge = true;
+	public bool bork = false; //When the dog has borked
+	public float sinceBork = 0.0f; // Timer after dog bork
+	public float numBork = 0.0f; //charge of bork
+	public float borkLvl; //storing of numBork
+	float numBorkMax = 3.0f; //max charge of bork
+	bool borkCharge = true; //when bork is charging up or down
 
-	float borkTimer = 0;
-	float timeToBork = 0.5f;
-	bool isChargeBork = false;
+	float borkTimer = 0; //Timer before dog bork
+	float timeToBork = 0.5f; //max time before borkCharge
+	bool isChargeBork = false; //when bork is charging
 
 	void Start () {
 
@@ -79,7 +87,19 @@ public class PlayerController : MonoBehaviour {
 		if (Input.GetKeyUp (KeyCode.Space)) { //When the player lets go of Space
 
 			Bork ();
-			Debug.Log ("BORK");
+
+		}
+
+		if (bork) { //Timer for Player Bork, helps reset bork boolean for NPC Interaction
+
+			sinceBork += Time.deltaTime;
+
+			if (sinceBork > 1.0f) {
+
+				bork = false;
+				sinceBork = 0.0f;
+
+			}
 
 		}
 
@@ -121,6 +141,8 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void ChargeBork() { //Player is charging a bork
+
+		playerCanvas.gameObject.SetActive (true);
 		// The player has to charge their bork to use it. This requires the player to not only hold space
 		// But to also time their bork for maximum borkness. Otherwise a quick tap will let out a smol Bork.
 
@@ -131,6 +153,8 @@ public class PlayerController : MonoBehaviour {
 		if (borkCharge) {
 
 			numBork += Time.deltaTime;
+			borkBarFill.fillAmount = numBork / numBorkMax;
+
 			if (numBork > numBorkMax) {
 
 				borkCharge = false; //Charge downwards here
@@ -138,8 +162,9 @@ public class PlayerController : MonoBehaviour {
 			}
 
 		} else if (!borkCharge) {
-
+			
 			numBork -= Time.deltaTime;
+			borkBarFill.fillAmount = numBork / numBorkMax;
 			if (numBork < 0) {
 
 				borkCharge = true; //Charge upwards here
@@ -148,7 +173,7 @@ public class PlayerController : MonoBehaviour {
 
 		}
 
-		Debug.Log (numBork);
+		//Debug.Log ("BORK = " + numBork);
 
 	}
 
@@ -156,15 +181,19 @@ public class PlayerController : MonoBehaviour {
 
 		if (isChargeBork) {
 
+			bork = true;
+			borkLvl = numBork;
+
+			playerCanvas.gameObject.SetActive (false);
 			borkPFX.Play ();
 			var borkSize = borkPFX.sizeOverLifetime;
 			borkSize.sizeMultiplier = numBork;
 
 			Color blue = new Color (0f, 1f, 1f, 1f);
-			Color orange = new Color (1f, 0.7f, 0f, 1f);
+			Color red = new Color (1f, 0f, 0f, 1f);
 
 			var pfxMain = borkPFX.main;
-			pfxMain.startColor = Color.Lerp(blue, orange, numBork);
+			pfxMain.startColor = Color.Lerp(blue, red, (numBork/3));
 
 			isChargeBork = false;
 
@@ -175,10 +204,9 @@ public class PlayerController : MonoBehaviour {
 			pfxMain.startColor = Color.white;
 
 		}
-			
+
 		borkCharge = false;
 		numBork = 0.0f;
-
 		borkTimer = 0;
 
 	}
