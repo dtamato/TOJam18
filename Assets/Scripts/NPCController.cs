@@ -64,14 +64,14 @@ public class NPCController : MonoBehaviour {
             float distance = Vector3.Distance(this.transform.position, waypoints[waypointIndex].transform.position);
             Vector2 moveVector = waypoints[waypointIndex].transform.position - this.transform.position;
 
-            // Flip sprite if necessary
-            if((waypoints[waypointIndex].transform.position.x > this.transform.position.x && this.transform.localScale.x > 0) ||
-                (waypoints[waypointIndex].transform.position.x < this.transform.position.x && this.transform.localScale.x < 0))
-           {
-              this.transform.localScale = new Vector3(-this.transform.localScale.x, this.transform.localScale.y, this.transform.localScale.z);
-
-				dialogueCanvas.GetComponentInChildren<RectTransform>().transform.localScale = new Vector3(-dialogueCanvas.GetComponentInChildren<RectTransform>().transform.localScale.x, dialogueCanvas.GetComponentInChildren<RectTransform>().transform.localScale.y, dialogueCanvas.GetComponentInChildren<RectTransform>().transform.localScale.z);
-           }
+//            // Flip sprite if necessary
+//            if((waypoints[waypointIndex].transform.position.x > this.transform.position.x && this.transform.localScale.x > 0) ||
+//                (waypoints[waypointIndex].transform.position.x < this.transform.position.x && this.transform.localScale.x < 0))
+//           {
+//              this.transform.localScale = new Vector3(-this.transform.localScale.x, this.transform.localScale.y, this.transform.localScale.z);
+//
+//				dialogueCanvas.GetComponentInChildren<RectTransform>().transform.localScale = new Vector3(-dialogueCanvas.GetComponentInChildren<RectTransform>().transform.localScale.x, dialogueCanvas.GetComponentInChildren<RectTransform>().transform.localScale.y, dialogueCanvas.GetComponentInChildren<RectTransform>().transform.localScale.z);
+//           }
         
             if(distance > distanceRequired)
             {
